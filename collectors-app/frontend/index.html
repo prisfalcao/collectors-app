@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game Collection Organizer</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="script.js" defer></script>
+    </head>
+    <body>
+        <h1>Game Collection Organizer</h1>
+        <section>
+            <h2>Add a new game:</h2>
+            <form id="add-game-form">
+                <input type="text" id="name" placeholder="Game Name" required>
+                <input type="text" id="platform" placeholder="Platform" required>
+                <input type="number" id="release_year" placeholder="Release Year" required>
+                <input type="text" id="developer" placeholder="Developer" required>
+                <input type="text" id="condition" placeholder="Condition" required>
+                <button type="submit">Add Game</button>
+            </form>
+        </section>
+        <section>
+            <h2>My Game Collection:</h2>
+            <ul id="game-list"></ul>
+        </section>
+    </body>
+</html>

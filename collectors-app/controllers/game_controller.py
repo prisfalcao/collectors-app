@@ -25,18 +25,18 @@ class GameController:
         try:
             self.db.cursor.execute("SELECT * FROM games;")
             games = self.db.cursor.fetchall()
-
-            if not games:
-                print("No game registered yet.")
-            else:
-                for idx, game in enumerate(games, start=1):
-                    print(f"{idx}. ID: {game[0]}, Name: {game[1]}, Platform: {game[2]}, Release Year: {game[3]}, Developer: {game[4]}, Condition: {game[5]}")
+            return [
+                {'id': game[0], 'name': game[1], 'platform': game[2], 'release_year': game[3],
+                 'developer': game[4], 'condition': game[5]}
+                for game in games
+            ] if games else []
         except Exception as e:
-            print("Error loading the game list. ", e)
+            print("Error loading the game list.", e)
+            return []
 
     def remove_game(self, game_id):
         try:
-            self.db.cursor.execute("DELETE FROM games WHERE id = %s;", (game_id,))
+            self.db.cursor.execute("DELETE FROM games WHERE id = %s;", (int(game_id),))
             self.db.connection.commit()
             if self.db.cursor.rowcount > 0:
                 print(f"Game with ID'{game_id}' has been removed successfully!")
